@@ -1,0 +1,66 @@
+<h1>Edit</h1>
+
+<form class="form" method="POST" action="/stars/<% star.id %>">
+  <input type="hidden" name="_method" value="PUT">
+
+  <div class="column is-half">
+
+    <div class="field">
+      <label for="name">Name</label>
+      <input class="input" type="text" name="name" id="name" value="<%= star.name %>">
+    </div>
+
+    <div class="field">
+      <label class="label" for="type">Type</label>
+      <p class="control">
+        <span class="select">
+          <select name="type" id="type" required>
+            <option>Stars</option>
+            <option>Planets</option>
+            <option>Galaxies</option>
+            <option>Nebula</option>
+            <option>Comets/Astroids</option>
+            <option>Night Sky</option>
+          </select>
+        </span>
+      </p>
+    </div>
+
+
+    <div>
+      <label for="description">Description</label>
+      <textarea class="textarea" name="description"><%= wonder.description %></textarea>
+    </div>
+
+    <div class="field">
+      <label class="label" for="date">Date</label>
+      <p class="control">
+        <input class="input" type="date">
+      </p>
+    </div>
+
+
+
+  </div>
+
+
+
+
+  <div class="column is-half">
+
+    <div>
+      <label for="image">Image</label>
+      <input class="input" type="text" name="image" id="image" value="<%= star.image %>">
+    </div>
+
+  </div>
+
+
+
+
+  <button type="submit">Update</button>
+
+
+
+
+</form>

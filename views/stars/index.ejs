@@ -1,0 +1,28 @@
+<h1>Index</h1>
+
+<div class="containter">
+
+<% stars.forEach((star) => { %>
+  <div class="box">
+    <p><%= star.name %></p>
+    <a href="/stars/<%= star.id %>"><img src="<%= star.image %>" alt="Star Image"></a>
+    <p><%= star.type %></p>
+    <p><%= star.date %></p>
+    <p><%= star.description %></p>
+    <p><%= star.lat %></p>
+    <p><%= star.lng %></p>
+  </div>
+<% }) %>
+
+
+
+
+
+
+
+  <div id="indexMap">
+    
+  </div>
+
+
+</div>

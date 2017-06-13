@@ -1,23 +1,35 @@
-<h1>Log In</h1>
+<h1 class="title is-1">Log In</h1>
 
 <div class="container">
+  <div class="col">
+    <div class="box">
 
+      <form method="POST" action="/login">
 
-    <form method="POST" action="/login">
-      <div class="field">
-        <label class="label" for="email">Email</label>
-        <input class="input" type="text" name="email" id="email" required>
-      </div>
-      <div class="field">
-        <label class="label" for="password">Password</label>
-        <input class="input" type="password" name="password" id="password" required>
-      </div>
+        <div class="field">
+          <label class="label" for="email">Email</label>
+          <p class="control has-icons-left">
+            <input class="input is-medium" type="email" name="email" id="email" required>
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
 
-      <button class="button">Login</button>
-    </form>
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <p class="control has-icons-left">
+            <input class="input is-medium" type="password" name="password" id="password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
 
+        <button class="button is-info">Login</button>
 
+      </form>
 
-
-
+    </div>
+  </div>
 </div>

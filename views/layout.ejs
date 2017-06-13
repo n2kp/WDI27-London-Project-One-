@@ -9,7 +9,9 @@
   </head>
 
   <body>
+    <% if(locals.isLoggedIn) { %>
     <%- include partials/_navbar %>
+    <% } %>
     <%- body %>
   </body>
 

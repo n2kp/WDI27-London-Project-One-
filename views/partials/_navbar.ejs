@@ -1,43 +1,51 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="/">
-    <img src="http://icons.iconarchive.com/icons/blacksugar/new-year-flat/128/Stars-icon.png" alt="Logo" width="30" height="30">
-  </a>
+<nav class="nav has-shadow">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="container">
+
+    <div class="nav-left">
 
       <% if(locals.isLoggedIn) { %>
-      <li class="nav-item active">
-        <a class="nav-link" href="/stars">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/stars/new">Add Image</a>
-      </li>
+
+        <a class="nav-item" href="/">
+          <img src="http://icons.iconarchive.com/icons/blacksugar/new-year-flat/128/Stars-icon.png" alt="Stars logo" width="30" height="30">
+        </a>
+
+        <a class="nav-item" href="/stars">
+          <span class="icon">
+            <i class="fa fa-map" aria-hidden="true"></i>
+          </span>
+          Map</a>
+
+        <a class="nav-item" href="/stars/new">
+          <span class="icon">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+          </span>
+          Add</a>
+
       <% } %>
 
-    <ul class="navbar-nav mr-auto">
+    </div>
+
+    <div class="nav-right">
+
       <% if(locals.isLoggedIn) { %>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/<%= currentUser.id %>">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-        <% } else { %>
-      <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
+
+        <a class="nav-item" href="/users/<%= currentUser.id %>">
+          <span class="icon">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </span>Profile
+        </a>
+
+        <a class="nav-item" href="/logout">
+          <span class="icon">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </span>Logout
+        </a>
+
       <% } %>
-    </ul>
+
+    </div>
+
   </div>
-</nav>
-
-<nav class="navbar navbar-light bg-faded">
 
 </nav>

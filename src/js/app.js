@@ -3,12 +3,18 @@ $(() => {
   console.log('Twinkle Twinkle Little Star');
   /* global google:ignore*/
 
+  // $.ajax({
+  //   url: 'http://localhost:8000/stars',
+  //   method: 'GET'
+  // })
+  // .then((stars) => console.log('stars', stars));
+
   let map, infoWindow;
 
   function geoMap() {
     map = new google.maps.Map(document.getElementById('userProfileMap'), {
       center: {lat: 47.778842, lng: 8.886226},
-      zoom: 5
+      zoom: 8
     });
     infoWindow = new google.maps.InfoWindow;
 
@@ -37,27 +43,24 @@ $(() => {
     infoWindow.setContent(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
-      infoWindow.open(map);
-  }
+    infoWindow.open(map);
+    }
 
 
+    function indexMap() {
+      let map = new google.maps.Map(document.getElementById('indexMap'), {
+        center: {lat: 0.0, lng: 0.0},
+        zoom: 1
+      });
 
-
-  function indexMap() {
-    let map = new google.maps.Map(document.getElementById('indexMap'), {
-      center: {lat: 0.0, lng: 0.0},
-      zoom: 1
-    });
-
-    <% stars.forEach((star) => { %>
-      let uluru = {lat: <%= star.lat %>, lng: <%= star.lng %>};
-      let marker = new google.maps.Marker({
-      map: map
-      position: uluru,
-    });
-  }
-
-
+      stars.forEach((star) => {
+        const position = { lat: star.lat, lng: star.lng };
+        const marker = new google.maps.Marker({
+          map,
+          position
+        });
+      });
+    }
 
   geoMap();
 

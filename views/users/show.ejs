@@ -1,23 +1,30 @@
-<h1>User Profile</h1>
+<h1 class="title is-1">User Profile</h1>
 
 <div class="container">
+  <div class="col">
 
-  <h2><%= user.username %></h2>
+    <div class="box">
+      <h2 class="title is-2"><%= user.username %></h2>
+      <h4 class="subtitle is-3"><%= user.email %></h4>
+      <br>
+      <form method="POST" action="/users/<%= user.id %>">
+        <a href="/users/<%= user.id %>/edit" class="button is-info">Edit Account</a>
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="button is-danger">Delete Account</button>
+      </form>
+    </div>
 
-  <h4><%= user.email %></h4>
+    <div class="box userProfileMap">
+      <h3 class="title is-3">Current Location:</h3>
+      <div id="userProfileMap">
+      </div>
+    </div>
 
-  <h4>Current Location:</h4>
-
-
-  <div id="userProfileMap">
+    <div class="box userProfileForcast">
+      <h3 class="title is-3">Star Grazing Forecast:</h3>
+      <div id="userProfileForcast">
+      </div>
+    </div>
 
   </div>
-
-  <form method="POST" action="/users/<%= user.id %>">
-    <a href="/users/<%= user.id %>/edit" class="button">Edit Account</a>
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="button btn btn-danger">Delete</button>
-  </form>
-
-
 </div>

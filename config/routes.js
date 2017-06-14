@@ -31,7 +31,7 @@ router.route('/stars/:id/edit')
 
 router.route('/users/:id')
   .get(secureRoute, users.show)
-  .post(upload.single('image'), users.update)
+  .put(secureRoute, upload.single('image'), users.update)
   .delete(secureRoute, users.delete);
 
 router.route('/users/:id/edit')

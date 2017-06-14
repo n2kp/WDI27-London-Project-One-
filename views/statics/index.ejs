@@ -6,9 +6,11 @@
       </div>
     </div>
 
+
+
     <div id="vidTopContent" class="text is-centered">
 
-
+        <% if(!locals.isLoggedIn) { %>
         <div class="has-text-centered">
           <p class="entryTitle">Final Frontier</h2>
         </div>
@@ -19,9 +21,11 @@
           <a href="/login" class="button entryButton is-medium is-primary">Login</a>
           <a href="/register" class="button entryButton is-medium is-info">Register</a>
         </div>
-
+        <% } %>
 
     </div>
+
+
 
 </div>
 

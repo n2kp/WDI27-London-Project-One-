@@ -1,29 +1,53 @@
 <h1 class="title is-1">User Profile</h1>
 
 <div class="container">
-  <div class="col">
+  <div class="columns">
 
-    <div class="box">
-      <h2 class="title is-2"><%= user.username %></h2>
-      <h4 class="subtitle is-3"><%= user.email %></h4>
-      <br>
-      <form method="POST" action="/users/<%= user.id %>">
-        <a href="/users/<%= user.id %>/edit" class="button is-medium is-info">Edit Account</a>
-        <input type="hidden" name="_method" value="DELETE">
-        <button class="button is-medium is-danger">Delete Account</button>
-      </form>
+    <div class="column is-half">
+
+      <div class="box">
+        <h2 class="title is-2"><%= user.username %></h2>
+        <h4 class="subtitle is-3"><%= user.email %></h4>
+        <br>
+        <form method="POST" action="/users/<%= user.id %>">
+          <a href="/users/<%= user.id %>/edit" class="button is-medium is-info">Edit Account</a>
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="button is-medium is-danger">Delete Account</button>
+        </form>
+      </div>
+
+      <div class="box userProfileMap">
+        <h3 class="title is-3">Current Location:</h3>
+        <div class="map geoMap small" id="userProfileMap">
+        </div>
+      </div>
+
+      <div class="box userProfileForcast">
+        <h3 class="title is-3">Star Grazing Forecast for Your Location:</h3>
+        <div id="userProfileForcast">
+        </div>
+      </div>
+
     </div>
 
-    <div class="box userProfileMap">
-      <h3 class="title is-3">Current Location:</h3>
-      <div class="map geoMap small" id="userProfileMap">
-      </div>
-    </div>
+    <div class="column is-half">
 
-    <div class="box userProfileForcast">
-      <h3 class="title is-3">Star Grazing Forecast for Your Location:</h3>
-      <div id="userProfileForcast">
+      <div class="box">
+
+        <h3 class="title is-3">NASA Astronomy Picture of the Day:</h3>
+
+        <h4 class="title is-4" id="apod_title"></h4>
+
+        <img id="apod_img_id" width="100%"/>
+
+        <iframe id="apod_vid_id" type="text/html" width="640" height="385" frameborder="0"></iframe>
+
+        <p class="subtitle is-5" id="copyright"></p>
+
+        <p class="subtitle is-6 nasaPOTD" id="apod_explaination"></p>
+
       </div>
+
     </div>
 
   </div>

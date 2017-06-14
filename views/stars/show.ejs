@@ -1,97 +1,89 @@
 <h1 class="title is-1">Image Details</h1>
 
-
 <div class="container">
 
-  <div class="row">
+  <div class="columns">
 
-    <div class="col-sm-8">
+    <div class="column is-half">
       <div class="box">
+        <h2 class="title is-2"><%= star.name %></h2>
         <img src="<%= star.imageSRC %>" alt="<%= star.caption %>">
-        <p><em><%= star.name %></em></p>
-        <p>Type: <%= star.type %></p>
-        <p>Date Taken: <%= star.date.toDateString() %></p>
-        <p>Description: <%= star.description %></p>
-        <div class="block">
-          <p>Created by: <%= star.createdBy.username %> </p>
-          <div class="button-bar">
-          <% if(locals.isLoggedIn && star.belongsTo(currentUser)) { %>
-              <a class="button is-primary" href="/stars/<%= star.id %>/edit">Edit</a>
-              <form class="alongside" method="POST" action="/stars/<%= star.id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="button is-danger">Delete</button>
-              </form>
-            </div>
-          <% } %>
+        <br>
+        <br>
+        <p class="subtitle is-3">Type: <%= star.type %></p>
+        <p class="subtitle is-5">Date Taken: <%= star.date.toDateString() %></p>
+        <p class="subtitle is-6">Description: <%= star.description %></p>
+      </div>
+      <div class="box">
+        <h4 class="title is-4">Image Location:</h4>
+        <div class="map showMap" id="showMap" data-lat="<%= star.lat %>" data-lng="<%= star.lng %>">
+        </div>
       </div>
     </div>
 
-    <div class="map showMap" id="showMap" data-lat="<%= star.lat %>" data-lng="<%= star.lng %>">
-
-    </div>
-
-    <div class="col-sm-4">
-      <% if(locals.isLoggedIn) { %>
-        <section class="column column-layout">
-            <form class=""  method="POST" action="/stars/<%= star.id %>/comments">
-              <div class="">
-                  <div class="">
-                    <div class="field">
-                      <label class="label" for="content">Comment</label>
-                      <p class="control">
-                        <textarea class="textarea" name="content" id="content" placeholder="Textarea"></textarea>
-                      </p>
-                    </div>
-                    <button class="button is-success">Post</button>
+    <div class="column is-half">
+      <div class="box">
+        <p class="title is-4">Created by: <%= star.createdBy.username %> </p>
+        <% if(locals.isLoggedIn && star.belongsTo(currentUser)) { %>
+          <a class="button is-primary" href="/stars/<%= star.id %>/edit">Edit</a>
+          <form class="alongside" method="POST" action="/stars/<%= star.id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="button is-danger">Delete</button>
+          </form>
+        <% } %>
+      </div>
+      <div class="box">
+        <% if(locals.isLoggedIn) { %>
+          <form class=""  method="POST" action="/stars/<%= star.id %>/comments">
+            <div class="field">
+              <label class="label" for="content">Comment on this Post</label>
+              <p class="control">
+                <textarea class="textarea" name="content" id="content" placeholder="Add Comment"></textarea>
+              </p>
+            </div>
+            <button class="button is-success">Post</button>
+          </form>
+        <% } %>
+      </div>
+      <div class="box">
+        <h4 class="title is-4">Comments</h4>
+        <hr>
+        <% star.comments.forEach((comment) => { %>
+          <div class="box">
+            <article class="media">
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong><%= comment.createdBy.username %></strong><small>
+                      <em class="">@ <%= comment.createdAt.toDateString() + " at " + comment.createdAt.toLocaleTimeString() %></em></small>
+                    <br>
+                    <%= comment.content %>
+                  </p>
+                </div>
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a class="level-item">
+                      <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                    </a>
+                    <a class="level-item">
+                      <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                    </a>
+                    <a class="level-item">
+                      <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                    </a>
+                    <% if(locals.isLoggedIn && comment.belongsTo(currentUser)) { %>
+                      <form method="POST" action="/stars/<%= star.id %>/comments/<%= comment.id %>">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="delete is-danger"></button>
+                      </form>
+                    <% } %>
                   </div>
+                </nav>
               </div>
-            </form>
-        </section>
-      <% } %>
-      <section class="column">
-         <h4>Comments</h4>
-         <hr>
-         <% star.comments.forEach((comment) => { %>
-           <div class="box">
-             <article class="media">
-               <div class="media-left">
-                 <figure class="image is-64x64">
-                   <img src="<%= comment.createdBy.imageSRC %>" alt="Image">
-                 </figure>
-               </div>
-               <div class="media-content">
-                 <div class="content">
-                   <p>
-                     <strong><a href="/profile"><%= comment.createdBy.username %></a></strong><small>
-                       <em class="">@ <%= comment.createdAt.toDateString() + " at " + comment.createdAt.toLocaleTimeString() %></em></small>
-                     <br>
-                     <%= comment.content %>
-                   </p>
-                 </div>
-                 <nav class="level is-mobile">
-                   <div class="level-left">
-                     <a class="level-item">
-                       <span class="icon is-small"><i class="fa fa-reply"></i></span>
-                     </a>
-                     <a class="level-item">
-                       <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-                     </a>
-                     <a class="level-item">
-                       <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                     </a>
-                     <% if(locals.isLoggedIn && comment.belongsTo(currentUser)) { %>
-                       <form method="POST" action="/stars/<%= star.id %>/comments/<%= comment.id %>">
-                         <input type="hidden" name="_method" value="DELETE">
-                         <button class="delete is-danger"></button>
-                       </form>
-                     <% } %>
-                   </div>
-                 </nav>
-               </div>
-             </article>
-           </div>
-         <% }) %>
-       </section>
+            </article>
+          </div>
+        <% }) %>
+      </div>
     </div>
 
   </div>

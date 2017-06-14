@@ -1,5 +1,27 @@
 const mongoose = require('mongoose');
 const s3 = require('../lib/s3');
+const months = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec'
+];
+const types = [
+  'Star',
+  'Planet',
+  'Galaxy',
+  'Nebula',
+  'Comet/Asteroid',
+  'Night Sky'
+];
 
 const commentSchema = new mongoose.Schema({
   content: { type: String, required: true },
@@ -17,13 +39,22 @@ commentSchema.methods.belongsTo = function commentbelongsTo(user) {
 const starSchema = new mongoose.Schema({
   name: { type: String, required: true },
   image: { type: String, required: true },
-  type: { type: String, required: true },
+  type: { type: String, required: true, enum: types },
   date: { type: Date, required: true },
+  month: { type: String, required: true, enum: months },
   description: { type: String },
-  lat: { type: Number, required: true },
-  lng: { type: Number, required: true },
+  lat: { type: Number },
+  lng: { type: Number },
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
+});
+
+starSchema.statics.months = months;
+starSchema.statics.types = types;
+
+starSchema.pre('validate', function setMonth(next) {
+  this.month = months[(new Date(this.date)).getMonth()];
+  next();
 });
 
 starSchema.pre('remove', function removeImage(next) {

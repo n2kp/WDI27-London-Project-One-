@@ -1,20 +1,31 @@
-<div>
+<div class="container">
 
-  <div class="video-background">
-    <div class="video-foreground">
-      <iframe src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+    <div class="video-background">
+      <div class="video-foreground">
+        <iframe src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
-  </div>
 
-  <% if(!locals.isLoggedIn) { %>
-  <div id="vidtop-content">
-  <div class="vid-info">
-  	  <h1>Final Frontier</h1>
-  	  <p>A community of amatuer and professional astrophotographers, showcasing their latest images of heavenly bodies.</p>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
+    <div id="vidTopContent" class="text is-centered">
+
+
+        <div class="has-text-centered">
+          <p class="entryTitle">Final Frontier</h2>
+        </div>
+        <div class="entry has-text-centered">
+          <p class="entryDescription">A community of amatuer and professional astrophotographers, showcasing their latest images of heavenly bodies.</p>
+        </div>
+        <div class="has-text-centered">
+          <a href="/login" class="button entryButton is-medium is-primary">Login</a>
+          <a href="/register" class="button entryButton is-medium is-info">Register</a>
+        </div>
+
+
     </div>
-  </div>
-  <% } %>
 
 </div>
+
+
+<% if(!locals.isLoggedIn) { %>
+<% } else { %>
+<% } %>

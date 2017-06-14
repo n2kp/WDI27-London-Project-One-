@@ -4,10 +4,11 @@ const s3 = require('../lib/s3');
 
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  username: { type: String, required: true, unique: true },
+  email: { type: String },
+  username: { type: String },
   image: { type: String },
-  password: { type: String, required: true }
+  password: { type: String },
+  instagramId: { type: Number }
 });
 
 userSchema
@@ -30,8 +31,13 @@ userSchema.pre('remove', function removeImage(next) {
 });
 
 userSchema.pre('validate', function checkPassword(next) {
+  if(!this.password && !this.instagramId) {
+    this.invalidate('password', 'required');
+  }
+
   if(this._passwordConfirmation && this._passwordConfirmation !== this.password) this.invalidate('passwordConfirmation', 'does not match');
   next();
+
 });
 
 userSchema.pre('save', function checkPassword(next) {

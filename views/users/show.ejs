@@ -8,20 +8,20 @@
       <h4 class="subtitle is-3"><%= user.email %></h4>
       <br>
       <form method="POST" action="/users/<%= user.id %>">
-        <a href="/users/<%= user.id %>/edit" class="button is-info">Edit Account</a>
+        <a href="/users/<%= user.id %>/edit" class="button is-medium is-info">Edit Account</a>
         <input type="hidden" name="_method" value="DELETE">
-        <button class="button is-danger">Delete Account</button>
+        <button class="button is-medium is-danger">Delete Account</button>
       </form>
     </div>
 
     <div class="box userProfileMap">
       <h3 class="title is-3">Current Location:</h3>
-      <div id="userProfileMap">
+      <div class="map geoMap small" id="userProfileMap">
       </div>
     </div>
 
     <div class="box userProfileForcast">
-      <h3 class="title is-3">Star Grazing Forecast:</h3>
+      <h3 class="title is-3">Star Grazing Forecast for Your Location:</h3>
       <div id="userProfileForcast">
       </div>
     </div>

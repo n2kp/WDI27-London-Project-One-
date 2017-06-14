@@ -5,13 +5,17 @@ const stars = require('../controllers/stars');
 const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
 const upload = require('../lib/upload');
+const oauth = require('../controllers/oauth');
 
 
 router.get('/', (req, res) =>
 res.render('statics/index'));
 
+router.route('/oauth/instagram')
+  .get(oauth.instagram);
+
 router.route('/stars')
-  .get(stars.index)
+  .get(secureRoute, stars.index)
   .post(secureRoute, upload.single('image'), stars.create);
 
 router.route('/stars/new')

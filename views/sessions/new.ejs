@@ -26,9 +26,17 @@
           </p>
         </div>
 
-        <button class="button is-info">Login</button>
+        <button class="button is-info is-medium">Login</button>
+        <a href="/" class="button is-warning is-medium">Cancel</a>
 
       </form>
+      <br>
+      <a class="button is-primary is-medium" href="<%= oauth.instagram.getLoginUrl() %>">
+        <span class="icon">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </span>
+        <span>Login With Instagram</span>
+      </a>
 
     </div>
   </div>

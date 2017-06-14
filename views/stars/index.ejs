@@ -1,13 +1,13 @@
-<h1>Index</h1>
+<h1 class="title is-1">Index</h1>
 
 <div class="container">
 
 <% stars.forEach((star) => { %>
   <div class="box">
     <p><%= star.name %></p>
-    <a href="/stars/<%= star.id %>"><img src="<%= star.image %>" alt="Star Image"></a>
+    <a href="/stars/<%= star.id %>"><img src="<%= star.imageSRC %>" alt="Star Image" height="100px" width="100px"></a>
     <p><%= star.type %></p>
-    <p><%= star.date %></p>
+    <p><%= star.date.toDateString() %></p>
     <p><%= star.description %></p>
     <p><%= star.lat %></p>
     <p><%= star.lng %></p>
@@ -20,7 +20,7 @@
 
 
 
-  <div id="indexMap">
+  <div class="map indexMap" id="indexMap" data-stars="<%= JSON.stringify( stars ) %>">
 
   </div>
 

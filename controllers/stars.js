@@ -2,27 +2,26 @@ const Star = require('../models/star');
 
 function indexStar(req, res, next) {
   Star
-   .find()
+   .find(req.query)
    .populate('createdBy')
    .exec()
-   .then((stars)  => res.render('stars/index', { stars }))
+   .then((stars)  => res.render('stars/index', { stars, months: Star.months }))
    .catch(next);
 }
 
 function newStar(req, res) {
-  return res.render('stars/new');
+  return res.render('stars/new', { types: Star.types });
 }
 
 function createStar(req, res, next) {
-
   req.body.createdBy = req.user;
   if(req.file) req.body.image = req.file.key;
-
+  console.log('req.body', req.body);
   Star
     .create(req.body)
     .then(() => res.redirect('/stars'))
     .catch((err) => {
-      if(err.name === 'ValidationError') return res.badRequest(`/stars/${req.params.id}/edit`, err.toString());
+      if(err.name === 'ValidationError') return res.badRequest(`/stars/new`, err.toString());
       next(err);
     });
 }
@@ -46,12 +45,13 @@ function editStar(req, res, next) {
     .then((star) => {
       if(!star) return res.redirect();
       if(!star.belongsTo(req.user)) return res.unauthorized(`/stars/${star.id}`, 'You do not have permission to edit stars resource');
-      return res.render('stars/edit', { star });
+      return res.render('stars/edit', { star, types: Star.types });
     })
     .catch(next);
 }
 
 function updateStar(req, res, next) {
+
   Star
     .findById(req.params.id)
     .exec()

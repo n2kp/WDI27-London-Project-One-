@@ -1,13 +1,13 @@
 module.exports = {
   instagram: {
     loginUrl: 'https://api.instagram.com/oauth/authorize/',
+    accessTokenUrl: 'https://api.instagram.com/oauth/access_token',
+    redirectUri: 'http://localhost:8000/oauth/instagram',
     clientId: process.env.INSTA_ACCESS_KEY,
     clientSecret: process.env.INSTA_SECRET_KEY,
-    redirectUri: 'http://localhost:8000/register',
-    responseCode: 'token',
-    scope: 'basic',
+    responseCode: 'code',
     getLoginUrl() {
-      return `${this.loginURL}?client_id=${this.clientID}&redirect_uri=${this.redirectUri}&response_type=${this.responseCode}`;
+      return `${this.loginUrl}?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&response_type=${this.responseCode}`;
     }
   }
 };

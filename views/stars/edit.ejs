@@ -15,12 +15,9 @@
       <p class="control">
         <span class="select">
           <select name="type" id="type" required>
-            <option>Stars</option>
-            <option>Planets</option>
-            <option>Galaxies</option>
-            <option>Nebula</option>
-            <option>Comets/Astroids</option>
-            <option>Night Sky</option>
+            <% types.forEach(type => { %>
+              <option><%= type %></option>
+            <% }) %>
           </select>
         </span>
       </p>

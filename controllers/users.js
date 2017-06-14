@@ -24,12 +24,13 @@ function editRoute(req, res, next) {
 }
 
 function updateRoute(req, res, next) {
-  if(req.file) req.body.image = req.file.key;
+  console.log(req.body);
+  console.log(req.params.id);
 
   User
     .findById(req.params.id)
     .exec()
-    .then(user => {
+    .then((user) => {
       if(!user) return res.notFound();
 
       for(const field in req.body) {

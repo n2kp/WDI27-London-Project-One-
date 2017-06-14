@@ -1,10 +1,11 @@
 <h1 class="title is-1">Edit User Profile</h1>
 
 <div class="container">
-  <div class="col">
+  <div class="column">
     <div class="box">
 
       <form method="POST" action="/users/<%= user.id %>">
+        <input type="hidden" name="_method" value="PUT">
 
         <div class="field">
           <label for="name" class="label">Username</label>

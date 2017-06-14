@@ -13,6 +13,9 @@
     <%- include partials/_navbar %>
     <% } %>
     <%- body %>
+    <% if(locals.isLoggedIn) { %>
+    <%- include partials/_footer %>
+    <% } %>
   </body>
 
 </html>

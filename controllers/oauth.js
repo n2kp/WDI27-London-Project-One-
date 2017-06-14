@@ -20,7 +20,6 @@ function instagram (req, res, next) {
     json: true
   })
   .then((token) => {
-    console.log('token', token);
     return User
     .findOne({ $or: [{ email: token.user.email }, { instagramId: token.user.id }] })
     .then((user) => {

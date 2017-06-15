@@ -25,10 +25,29 @@
       <div class="box userProfileForcast">
 
         <h3 class="title is-3">Star Grazing Forecast for Your Location:</h3>
-        <h3 class="sutitle is-3">% Cloud Cover<i class="fa fa-question-circle-o" aria-hidden="true"></i></h3>
+        <h3 class="sutitle is-3">% Cloud Cover</h3>
         <br>
         <div id="userProfileForecast">
         </div>
+        <br>
+        <button class="toggle-modal button is-medium is-info">Understanding Your Forecast<i class="fa fa-question-circle-o" aria-hidden="true"></i></button>
+        <div class="modal" id="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Modal title</p>
+              <button class="delete toggle-modal"></button>
+            </header>
+            <section class="modal-card-body">
+              <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+              <a class="button is-success toggle-modal">Save changes</a>
+              <a class="button toggle-modal">Cancel</a>
+            </footer>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -38,39 +57,15 @@
       <div class="box">
 
         <h3 class="title is-3">NASA Astronomy Picture of the Day:</h3>
-
         <h4 class="title is-4" id="apod_title"></h4>
-
         <img id="apod_img_id" width="100%"/>
-
         <iframe id="apod_vid_id" type="text/html" width="640" height="385" frameborder="0"></iframe>
-
         <p class="subtitle is-5" id="copyright"></p>
-
         <p class="subtitle is-6 nasaPOTD" id="apod_explaination"></p>
 
       </div>
 
     </div>
 
-  </div>
-</div>
-
-
-<button class="toggle-modal">Open Modal</button>
-<div class="modal" id="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete toggle-modal"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-    </section>
-    <footer class="modal-card-foot">
-      <a class="button is-success toggle-modal">Save changes</a>
-      <a class="button toggle-modal">Cancel</a>
-    </footer>
   </div>
 </div>

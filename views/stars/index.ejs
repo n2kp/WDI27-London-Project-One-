@@ -1,28 +1,24 @@
-<h1 class="title is-1">Index</h1>
+<h1 class="title is-1">Image Index</h1>
 
 <div class="container">
 
-<% stars.forEach((star) => { %>
-  <div class="box">
-    <p><%= star.name %></p>
-    <a href="/stars/<%= star.id %>"><img src="<%= star.imageSRC %>" alt="Star Image" height="100px" width="100px"></a>
-    <p><%= star.type %></p>
-    <p><%= star.date.toDateString() %></p>
-    <p><%= star.description %></p>
-    <p><%= star.lat %></p>
-    <p><%= star.lng %></p>
-  </div>
-<% }) %>
+  <div class="columns is-multiline">
 
+  <% stars.forEach((star) => { %>
 
+    <div class="column is-half">
+      <div class="box has-text-centered indexBox">
+        <p class="title is-3"><%= star.name %></p>
+        <a href="/stars/<%= star.id %>"><img src="<%= star.imageSRC %>" alt="Star Image" height="200px" width="200px"></a>
+        <p><%= star.type %></p>
+        <p><%= star.date.toDateString() %></p>
+        <p><%= star.description %></p>
 
+      </div>
+    </div>
 
-
-
-
-  <div class="map indexMap" id="indexMap" data-stars="<%= JSON.stringify( stars ) %>">
+  <% }) %>
 
   </div>
-
 
 </div>

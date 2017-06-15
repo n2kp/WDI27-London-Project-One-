@@ -16,7 +16,7 @@ $(() => {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
+        let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
@@ -47,8 +47,11 @@ $(() => {
       const myLatLng = event.latLng;
       const lat = myLatLng.lat();
       const lng = myLatLng.lng();
-      // console.log('lat', lat);
-      // console.log('lng', lng);
+      console.log(lat);
+      console.log(lng);
+      $('#newLat').val(lat);
+      $('#newLng').val(lng);
+
     });
     function placeMarker(location) {
       const marker = new google.maps.Marker({
@@ -62,13 +65,12 @@ $(() => {
 
   function populateIndex() {
     stars.forEach((star) => {
-      // console.log(star);
       const latLng = new google.maps.LatLng(star.lat, star.lng);
-      // console.log(latLng, map);
       const marker = new google.maps.Marker({
         position: latLng,
         map: map
       });
+      infoWindowDetails(marker, star);
     });
   }
 
@@ -91,15 +93,16 @@ $(() => {
         zoom: $(mapDiv).hasClass('small') ? 10 : 2
       });
 
-      // if(latLng) {
-      //   new google.maps.Marker({
-      //     map: map,
-      //     position: latLng,
-      //     icon: ''
-      //   });
-      // }
+      if (!!lat && !!lng) {
+        new google.maps.Marker({
+          map: map,
+          position: latLng
+        });
+      }
 
       if($(mapDiv).hasClass('geoMap')) geoMap();
+      const populateIndexRs = populateIndex();
+      console.log('populateindexrs', populateIndexRs);
       if($(mapDiv).hasClass('indexMap')) populateIndex();
       if($(mapDiv).hasClass('newMap')) newMap(map);
 
@@ -163,7 +166,7 @@ $(() => {
         </div> `;
 
         const startHTML = isFirst ? `<div class="forecastDay">
-        <h3>${moment(filterTimes[i].dt_txt.split(' ')[0]).format('MMMM Do YYYY')}</h3>` : '';
+        <h3>${moment(filterTimes[i].dt_txt.split(' ')[0]).format('MMM Do YYYY')}</h3>` : '';
 
         const finishHTML = isLast ? `</div>` : '';
         const individualHTML = startHTML + forecastHTML + finishHTML;
@@ -173,5 +176,33 @@ $(() => {
       $('#userProfileForecast').append(totalHTML);
     });
   }
+
+  function infoWindowDetails(marker, star) {
+
+    const infoContent = `<div id="content">
+
+    <div id="siteNotice">
+    </div>
+
+    <h1 id="infoHeading" class="title is-5">${star.name}</h1>
+
+    <div id="infoContent">
+    <p class="subtitle is-6"><b>Type: ${star.type}</b></p>
+    <p class="subtitle is-6">Created by: ${star.createdBy.username}</p>
+
+    <a href="/stars/${star.id}">More Details</a>
+    </div>
+
+    </div>`;
+
+    const infowindow = new google.maps.InfoWindow({
+      content: infoContent
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+
 
 });

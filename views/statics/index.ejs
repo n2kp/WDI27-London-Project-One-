@@ -1,15 +1,12 @@
-<div class="container">
+<div>
 
-    <div class="video-background">
+    <div class="video-background <% if(!locals.isLoggedIn) { %>logged-out<% } %>">
       <div class="video-foreground">
         <iframe src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-
-
     <div id="vidTopContent" class="text is-centered">
-
         <% if(!locals.isLoggedIn) { %>
         <div class="has-text-centered">
           <p class="entryTitle">Final Frontier</h2>
@@ -22,14 +19,6 @@
           <a href="/register" class="button entryButton is-medium is-info">Register</a>
         </div>
         <% } %>
-
     </div>
 
-
-
 </div>
-
-
-<% if(!locals.isLoggedIn) { %>
-<% } else { %>
-<% } %>

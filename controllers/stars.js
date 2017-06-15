@@ -9,6 +9,15 @@ function indexStar(req, res, next) {
    .catch(next);
 }
 
+function mapStar(req, res, next) {
+  Star
+   .find(req.query)
+   .populate('createdBy')
+   .exec()
+   .then((stars)  => res.render('stars/map', { stars, months: Star.months }))
+   .catch(next);
+}
+
 function newStar(req, res) {
   return res.render('stars/new', { types: Star.types });
 }
@@ -119,6 +128,7 @@ function deleteCommentRoute(req, res, next) {
 
 module.exports = {
   index: indexStar,
+  map: mapStar,
   new: newStar,
   create: createStar,
   show: showStar,

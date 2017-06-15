@@ -14,6 +14,9 @@ res.render('statics/index'));
 router.route('/oauth/instagram')
   .get(oauth.instagram);
 
+router.route('/map')
+  .get(secureRoute, stars.map)
+
 router.route('/stars')
   .get(secureRoute, stars.index)
   .post(secureRoute, upload.single('image'), stars.create);
@@ -31,7 +34,7 @@ router.route('/stars/:id/edit')
 
 router.route('/users/:id')
   .get(secureRoute, users.show)
-  .post(secureRoute, users.update)
+  .put(secureRoute, users.update)
   .delete(secureRoute, users.delete);
 
 router.route('/users/:id/edit')

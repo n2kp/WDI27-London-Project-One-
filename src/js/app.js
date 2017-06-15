@@ -5,6 +5,10 @@ $(() => {
   console.log('Twinkle Twinkle Little Star');
 
   let map, infoWindow;
+  const stars = $('#indexMap').data('stars');
+  const nasaUrl = 'https://api.nasa.gov/planetary/apod?api_key=uAoelvMrH4EMXF47NZDFrM7jEMpOfqkOihpZIKT6';
+  const times = ['00:00:00', '21:00:00', '03:00:00'];
+
 
   function geoMap() {
     map = new google.maps.Map(document.getElementById('userProfileMap'), {
@@ -33,6 +37,7 @@ $(() => {
     }
   }
 
+
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -40,6 +45,7 @@ $(() => {
       'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
+
 
   function newMap(map) {
     google.maps.event.addListener(map, 'click', (event) => {
@@ -61,7 +67,6 @@ $(() => {
     }
   }
 
-  const stars = $('#indexMap').data('stars');
 
   function populateIndex() {
     stars.forEach((star) => {
@@ -71,6 +76,29 @@ $(() => {
         map: map
       });
       infoWindowDetails(marker, star);
+    });
+  }
+
+
+  function infoWindowDetails(marker, star) {
+
+    const infoContent = `<div id="content">
+    <div id="siteNotice">
+    </div>
+    <h1 id="infoHeading" class="title is-5">${star.name}</h1>
+    <div id="infoContent">
+    <p class="subtitle is-6"><b>Type: ${star.type}</b></p>
+    <p class="subtitle is-6">Created by: ${star.createdBy.username}</p>
+    <a href="/stars/${star._id}">More Details</a>
+    </div>
+    </div>`;
+
+    const infowindow = new google.maps.InfoWindow({
+      content: infoContent
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
     });
   }
 
@@ -101,40 +129,12 @@ $(() => {
       }
 
       if($(mapDiv).hasClass('geoMap')) geoMap();
-      const populateIndexRs = populateIndex();
-      console.log('populateindexrs', populateIndexRs);
       if($(mapDiv).hasClass('indexMap')) populateIndex();
       if($(mapDiv).hasClass('newMap')) newMap(map);
 
     });
   }
 
-  initMap();
-
-  const nasaUrl = 'https://api.nasa.gov/planetary/apod?api_key=uAoelvMrH4EMXF47NZDFrM7jEMpOfqkOihpZIKT6';
-
-  $.ajax({
-    url: nasaUrl,
-    success: function(result){
-      if('copyright' in result) {
-        $('#copyright').text('Image Credits: ' + result.copyright);
-      } else {
-        $('#copyright').text('Image Credits: ' + 'Public Domain');
-      }
-
-      if(result.media_type === 'video') {
-        $('#apod_img_id').css('display', 'none');
-        $('#apod_vid_id').attr('src', result.url);
-      } else {
-        $('#apod_vid_id').css('display', 'none');
-        $('#apod_img_id').attr('src', result.url);
-      }
-      $('#apod_explaination').text(result.explanation);
-      $('#apod_title').text(result.title);
-    }
-  });
-
-  const times = ['00:00:00', '21:00:00', '03:00:00'];
 
   function getWeather(pos) {
     console.log(pos);
@@ -148,6 +148,7 @@ $(() => {
       }
     })
     .done((response) => {
+      console.log(response.list);
 
       const filterTimes = response.list.filter((forecast) => {
         return times.indexOf(forecast.dt_txt.split(' ')[1]) > -1;
@@ -172,37 +173,44 @@ $(() => {
         const individualHTML = startHTML + forecastHTML + finishHTML;
         totalHTML += individualHTML;
       }
-
       $('#userProfileForecast').append(totalHTML);
     });
   }
 
-  function infoWindowDetails(marker, star) {
 
-    const infoContent = `<div id="content">
+  $.ajax({
+    url: nasaUrl,
+    success: function(result){
+      if('copyright' in result) {
+        $('#copyright').text('Image Credits: ' + result.copyright);
+      } else {
+        $('#copyright').text('Image Credits: ' + 'Public Domain');
+      }
 
-    <div id="siteNotice">
-    </div>
+      if(result.media_type === 'video') {
+        $('#apod_img_id').css('display', 'none');
+        $('#apod_vid_id').attr('src', result.url);
+      } else {
+        $('#apod_vid_id').css('display', 'none');
+        $('#apod_img_id').attr('src', result.url);
+      }
+      $('#apod_explaination').text(result.explanation);
+      $('#apod_title').text(result.title);
+    }
+  });
 
-    <h1 id="infoHeading" class="title is-5">${star.name}</h1>
 
-    <div id="infoContent">
-    <p class="subtitle is-6"><b>Type: ${star.type}</b></p>
-    <p class="subtitle is-6">Created by: ${star.createdBy.username}</p>
+  const $body = $('.modal-background');
+  const $modal = $('#modal');
+  const $launchModal = $('.toggle-modal');
 
-    <a href="/stars/${star.id}">More Details</a>
-    </div>
+  $launchModal.on('click', toggleModal);
+  $body.on('click', toggleModal);
 
-    </div>`;
-
-    const infowindow = new google.maps.InfoWindow({
-      content: infoContent
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
+  function toggleModal() {
+    $modal.toggleClass('is-active');
   }
 
+  initMap();
 
 });

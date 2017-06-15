@@ -4,12 +4,10 @@
   <div class="column">
     <div class="box">
 
-      <form class="form" method="POST" action="/stars/<%= star.id %>">
-        <input type="hidden" name="_method" value="PUT">
-
+      <form class="form" method="POST" action="/stars/<%= star.id %>" enctype="multipart/form-data">
           <div class="field">
             <label class="label" for="name">Name</label>
-            <input class="input" type="text" name="name" id="name" value="<%= star.name %>">
+            <input class="input" type="text" name="name" id="name" value="<%= star.name %>" required>
           </div>
 
           <div class="field">
@@ -28,7 +26,7 @@
           <div class="field">
             <label class="label">Date</label>
             <p class="control">
-              <input class="input" name="date" type="date" value="<%= star.date %>">
+              <input class="input" name="date" type="date" value="<%= moment(star.date).format('YYYY-MM-DD') %>">
             </p>
           </div>
 

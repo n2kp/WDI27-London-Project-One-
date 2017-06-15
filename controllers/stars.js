@@ -60,7 +60,7 @@ function editStar(req, res, next) {
 }
 
 function updateStar(req, res, next) {
-
+  if(req.file) req.body.image = req.file.key;
   Star
     .findById(req.params.id)
     .exec()

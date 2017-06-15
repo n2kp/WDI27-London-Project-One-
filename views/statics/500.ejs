@@ -1,9 +1,16 @@
-<h1>500: Internal Server Error</h1>
 
-<h2><%= err.message %></h2>
-
-<% if(locals.err.stack) { %>
-<pre>
-  <%= err.stack %>
-</pre>
-<% } %>
+<div class="container">
+  <div class="column">
+    <div class="box">
+      <h1 class="title is-1">500: Internal Server Error</h1>
+      <h2 class="subtitle is-3"><%= err.message %></h2>
+    </div>
+    <div class="box">
+      <% if(locals.err.stack) { %>
+      <pre>
+        <%= err.stack %>
+      </pre>
+      <% } %>
+    </div>
+  </div>
+</div>

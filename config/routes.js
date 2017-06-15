@@ -26,7 +26,7 @@ router.route('/stars/new')
 
 router.route('/stars/:id')
   .get(stars.show)
-  .put(secureRoute, stars.update)
+  .post(secureRoute, upload.single('image'), stars.update)
   .delete(secureRoute, stars.delete);
 
 router.route('/stars/:id/edit')

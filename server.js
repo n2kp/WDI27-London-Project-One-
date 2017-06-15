@@ -21,6 +21,8 @@ app.use(expressLayouts);
 
 mongoose.connect(dbURI);
 
+app.locals.moment = require('moment');
+
 app.use(express.static(`${__dirname}/public`));
 
 if('test' !== env) app.use(morgan('dev'));

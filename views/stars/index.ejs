@@ -9,11 +9,13 @@
     <div class="column is-half">
       <div class="box has-text-centered indexBox">
         <p class="title is-3"><%= star.name %></p>
-        <a href="/stars/<%= star.id %>"><img src="<%= star.imageSRC %>" alt="Star Image" height="200px" width="200px"></a>
-        <p><%= star.type %></p>
-        <p><%= star.date.toDateString() %></p>
-        <p><%= star.description %></p>
-
+        <a href="/stars/<%= star.id %>"><img class="indexImage" src="<%= star.imageSRC %>" alt="Star Image" height="250px" width="250px"></a>
+        <p class="subtitle is-4"><%= star.type %></p>
+        <p class="subtitle is-5 indexInfo">Created by: <%= star.createdBy.username %></p>
+        <p class="subtitle is-5"><%= star.date.toDateString() %></p>
+        <div class="container">
+          <p class="subtitle is-6"><%= star.description %></p>
+        </div>
       </div>
     </div>
 

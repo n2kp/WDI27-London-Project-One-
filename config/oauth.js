@@ -2,7 +2,7 @@ module.exports = {
   instagram: {
     loginUrl: 'https://api.instagram.com/oauth/authorize/',
     accessTokenUrl: 'https://api.instagram.com/oauth/access_token',
-    redirectUri: 'http://localhost:8000/oauth/instagram',
+    redirectUri: 'https://pacific-taiga-22359.herokuapp.com/oauth/instagram',
     clientId: process.env.INSTA_ACCESS_KEY,
     clientSecret: process.env.INSTA_SECRET_KEY,
     responseCode: 'code',

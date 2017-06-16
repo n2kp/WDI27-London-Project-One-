@@ -1,4 +1,4 @@
-/* global moment:true google:ignore */
+/* global moment:true google:ignore mapStyles:ignore */
 
 $(() => {
 
@@ -117,6 +117,7 @@ $(() => {
 
       map = new google.maps.Map(mapDiv, {
         center: latLng,
+        // styles: mapStyles,
         zoom: $(mapDiv).hasClass('small') ? 10 : 2
       });
 

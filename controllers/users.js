@@ -24,9 +24,6 @@ function editRoute(req, res, next) {
 }
 
 function updateRoute(req, res, next) {
-  console.log(req.body);
-  console.log(req.params.id);
-
   User
     .findById(req.params.id)
     .exec()

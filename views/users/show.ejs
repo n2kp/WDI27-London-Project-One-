@@ -12,23 +12,31 @@
         <form method="POST" action="/users/<%= user.id %>">
           <a href="/users/<%= user.id %>/edit" class="button is-medium is-info">Edit Account</a>
           <input type="hidden" name="_method" value="DELETE">
-          <button class="button is-medium is-danger">Delete Account</button>
-          <div class="modal" id="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button class="delete toggle-modal"></button>
-              </header>
-              <section class="modal-card-body">
-                <!-- Content ... -->
-              </section>
-              <footer class="modal-card-foot">
-                <a class="button is-success toggle-modal">Save changes</a>
-                <a class="button toggle-modal">Cancel</a>
-              </footer>
+
+          <div class="deleteUser">
+            <button class="button is-medium is-danger toggle-modal" type="button" data-modal="profile">Delete Account</button>
+            <div class="modal" data-modal="profile">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="title is-2">Warning!</p>
+                </header>
+
+                <section class="modal-card-body">
+                  <p class="subtitle is-5">Are you sure you want to delete your profile?</p>
+                  <p class="subtitle is-5">This action will irreversible</p>
+                  <p class="subtitle is-4">Please don't leave us</p>
+
+                </section>
+
+                <footer class="modal-card-foot">
+                  <button class="button is-medium is-danger">Confirm Delete</button>
+                  <a href="/users/<%= currentUser.id %>"class="button is-warning is-medium">Cancel</a>
+                </footer>
+              </div>
             </div>
           </div>
+          
         </form>
       </div>
 
@@ -46,69 +54,77 @@
         <div id="userProfileForecast">
         </div>
         <br>
-        <button class="toggle-modal button is-medium is-info">Understanding Your Forecast<i class="fa fa-question-circle-o" aria-hidden="true"></i></button>
-        <div class="modal" id="modal">
+        <div class="forecastInfo">
+          <button class="toggle-modal button is-info" data-modal="weather">Understanding Your Forecast<span class="space"></span><i class="fa fa-question-circle-o" aria-hidden="true"></i></button>
+          <div class="modal" data-modal="weather">
 
-          <div class="modal-background">
-          </div>
+            <div class="modal-background">
+            </div>
 
-          <div class="modal-card">
-            <header class="modal-card-head">
-              <p class="modal-card-title title is-3">Understanding Your Forecast</p>
-            </header>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title title is-3">Understanding Your Forecast</p>
+              </header>
 
-            <section class="modal-card-body">
-              <table>
+              <section class="modal-card-body">
 
-                <thead>
-                  <tr>
-                    <th>Icon</th>
-                    <th>Definition</th>
-                  </tr>
-                </thead>
+                <div class="subtitle is-6 forecastDetails">
+                  The Star Gazing Forecast uses information from Open Weather Network to display the amount of cloud cover that is likely to be present at your current location. It is measured in a percentage, where 100% means total cloud coverage, and hence bad star gazing ability, and 0% means clear skies, giving you the best chance to see the heavens.
+                </div>
 
-                <tbody>
-                  <tr>
-                    <th><img src="/assets/01n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Clear Sky</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/02n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Very Few Clouds</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/03n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Scattered Clouds</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/04n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Broken Clouds</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/05n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Rain Showers</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/06n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Rain</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/07n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Thuderstorm</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/08n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Snow</p></td>
-                  </tr>
-                  <tr>
-                    <th><img src="/assets/09n.png" alt=""></th>
-                    <td><p class="subtitle is-6">Mist</p></td>
-                  </tr>
+                <table class="table is-striped is-narrow">
 
-                </tbody>
+                  <thead>
+                    <tr>
+                      <th>Icon</th>
+                      <th>Definition</th>
+                    </tr>
+                  </thead>
 
-              </table>
-            </section>
+                  <tbody>
+                    <tr>
+                      <th><img src="/assets/01n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Clear Sky</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/02n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Very Few Clouds</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/03n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Scattered Clouds</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/04n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Broken Clouds</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/05n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Rain Showers</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/06n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Rain</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/07n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Thuderstorm</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/08n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Snow</p></td>
+                    </tr>
+                    <tr>
+                      <th><img src="/assets/09n.png" alt=""></th>
+                      <td><p class="subtitle is-6">Mist</p></td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+              </section>
+            </div>
+
           </div>
 
         </div>

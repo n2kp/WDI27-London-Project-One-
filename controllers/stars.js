@@ -25,7 +25,6 @@ function newStar(req, res) {
 function createStar(req, res, next) {
   req.body.createdBy = req.user;
   if(req.file) req.body.image = req.file.key;
-  console.log('req.body', req.body);
   Star
     .create(req.body)
     .then(() => res.redirect('/stars'))

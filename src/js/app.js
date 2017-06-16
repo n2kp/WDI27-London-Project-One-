@@ -4,6 +4,8 @@ $(() => {
 
   console.log('Twinkle Twinkle Little Star');
 
+  $('form').validate();
+
   let map, infoWindow;
   const stars = $('#indexMap').data('stars');
   const nasaUrl = 'https://api.nasa.gov/planetary/apod?api_key=uAoelvMrH4EMXF47NZDFrM7jEMpOfqkOihpZIKT6';
@@ -16,7 +18,6 @@ $(() => {
       zoom: 12
     });
     infoWindow = new google.maps.InfoWindow;
-    // console.log(infoWindow);
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -53,8 +54,6 @@ $(() => {
       const myLatLng = event.latLng;
       const lat = myLatLng.lat();
       const lng = myLatLng.lng();
-      console.log(lat);
-      console.log(lng);
       $('#newLat').val(lat);
       $('#newLng').val(lng);
 
@@ -137,7 +136,6 @@ $(() => {
 
 
   function getWeather(pos) {
-    console.log(pos);
 
     $.ajax({
       url: 'http://api.openweathermap.org/data/2.5/forecast',
@@ -148,7 +146,6 @@ $(() => {
       }
     })
     .done((response) => {
-      console.log(response.list);
 
       const filterTimes = response.list.filter((forecast) => {
         return times.indexOf(forecast.dt_txt.split(' ')[1]) > -1;
@@ -204,11 +201,17 @@ $(() => {
   const $modal = $('#modal');
   const $launchModal = $('.toggle-modal');
 
-  $launchModal.on('click', toggleModal);
-  $body.on('click', toggleModal);
+  $launchModal.on('click', openModal);
+  $body.on('click', closeModal);
 
-  function toggleModal() {
-    $modal.toggleClass('is-active');
+  function openModal(e) {
+    const type = $(e.target).data('modal');
+
+    $(`.modal[data-modal=${type}]`).addClass('is-active');
+  }
+
+  function closeModal() {
+    $('.modal').removeClass('is-active');
   }
 
   initMap();

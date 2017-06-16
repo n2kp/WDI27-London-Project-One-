@@ -20,6 +20,7 @@ const types = [
   'Galaxy',
   'Nebula',
   'Comet/Asteroid',
+  'Aurora',
   'Night Sky'
 ];
 
@@ -39,9 +40,9 @@ commentSchema.methods.belongsTo = function commentbelongsTo(user) {
 const starSchema = new mongoose.Schema({
   name: { type: String, required: true },
   image: { type: String, required: true },
-  type: { type: String, required: true, enum: types },
+  type: { type: String, required: true },
   date: { type: Date, required: true },
-  month: { type: String, required: true, enum: months },
+  month: { type: String, required: true },
   description: { type: String },
   lat: { type: Number },
   lng: { type: Number },

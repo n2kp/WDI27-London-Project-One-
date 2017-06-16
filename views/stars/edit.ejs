@@ -14,7 +14,7 @@
             <label class="label" for="type">Type</label>
             <p class="control">
               <span class="select">
-                <select name="type" id="type" required>
+                <select name="type" id="type">
                   <% types.forEach(type => { %>
                     <option><%= type %></option>
                   <% }) %>
@@ -33,7 +33,7 @@
           <div class="field">
             <label class="label">Description</label>
             <p class="control">
-              <textarea class="textarea" name="description"><%= star.description %></textarea>
+              <textarea class="textarea" name="description" maxlength="300"><%= star.description %></textarea>
             </p>
           </div>
 

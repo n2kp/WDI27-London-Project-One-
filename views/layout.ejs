@@ -12,10 +12,11 @@
     <% if(locals.isLoggedIn) { %>
     <%- include partials/_navbar %>
     <% } %>
-    <%- body %>
     <% for (const type in messages) { %>
       <p class="alert alert-<%= type %>"><%= messages[type] %></p>
       <% } %>
+    <%- body %>
+
     <% if(locals.isLoggedIn) { %>
     <%- include partials/_footer %>
     <% } %>

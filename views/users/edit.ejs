@@ -10,7 +10,7 @@
         <div class="field">
           <label for="name" class="label">Username</label>
           <p class="control has-icons-left">
-            <input class="input is-medium" type="text" name="username" value="<%= user.username %>">
+            <input class="input is-medium" type="text" name="username" value="<%= user.username %>" required>
             <span class="icon is-small is-left">
               <i class="fa fa-user" aria-hidden="true"></i>
             </span>
@@ -20,7 +20,7 @@
         <div class="field">
           <label for="email" class="label">Email</label>
           <p class="control has-icons-left">
-            <input class="input is-medium" type="text" name="email" value="<%= user.email %>">
+            <input class="input is-medium" type="text" name="email" value="<%= user.email %>" required>
             <span class="icon is-small is-left">
               <i class="fa fa-envelope" aria-hidden="true"></i>
             </span>
@@ -30,7 +30,7 @@
         <div class="field">
           <label for="password" class="label">Password</label>
           <p class="control has-icons-left">
-            <input class="input is-medium" type="password" name="password">
+            <input class="input is-medium" type="password" name="password" required>
             <span class="icon is-small is-left">
               <i class="fa fa-lock" aria-hidden="true"></i>
             </span>
@@ -40,7 +40,7 @@
         <div class="field">
           <label for="confirmPassword" class="label"> Confirm Password</label>
           <p class="control has-icons-left">
-            <input class="input is-medium" type="password" name="passwordConfirmation">
+            <input class="input is-medium" type="password" name="passwordConfirmation" required>
             <span class="icon is-small is-left">
               <i class="fa fa-lock" aria-hidden="true"></i>
             </span>

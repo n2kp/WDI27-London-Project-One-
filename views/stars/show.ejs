@@ -7,7 +7,18 @@
     <div class="column is-half">
       <div class="box">
         <h2 class="title is-2"><%= star.name %></h2>
-        <img src="<%= star.imageSRC %>" alt="<%= star.caption %>">
+
+        <div class"showImage">
+          <img src="<%= star.imageSRC %>" alt="<%= star.caption %>" class="toggle-modal" data-modal="image">
+          <div class="modal" data-modal="image">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <p class="image is-square">
+                <img src="<%= star.imageSRC %>">
+              </p>
+            </div>
+          </div>
+        </div>
         <br>
         <br>
         <p class="subtitle is-3">Type: <%= star.type %></p>

@@ -72,7 +72,8 @@ $(() => {
       const latLng = new google.maps.LatLng(star.lat, star.lng);
       const marker = new google.maps.Marker({
         position: latLng,
-        map: map
+        map: map,
+        icon: '../assets/pin.png'
       });
       infoWindowDetails(marker, star);
     });
@@ -125,7 +126,7 @@ $(() => {
         new google.maps.Marker({
           map: map,
           position: latLng,
-          icon: '/assets/pin.svg'
+          icon: '../assets/pin.svg'
         });
       }
 

@@ -50,7 +50,7 @@ gulp.task('assets', () => {
     .pipe(gulp.dest('public/assets'));
 });
 
-gulp.task('serve', sequence('clean', ['es6', 'sass']), () => {
+gulp.task('serve', sequence('clean', ['es6', 'assets', 'sass']), () => {
   browserSync.init({
     proxy: 'http://localhost:3000',
     port: 8000,

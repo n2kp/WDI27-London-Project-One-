@@ -117,14 +117,15 @@ $(() => {
 
       map = new google.maps.Map(mapDiv, {
         center: latLng,
-        // styles: mapStyles,
+        styles: mapStyles,
         zoom: $(mapDiv).hasClass('small') ? 10 : 2
       });
 
       if (!!lat && !!lng) {
         new google.maps.Marker({
           map: map,
-          position: latLng
+          position: latLng,
+          icon: '/assets/pin.svg'
         });
       }
 

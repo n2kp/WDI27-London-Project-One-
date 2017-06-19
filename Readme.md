@@ -11,11 +11,8 @@ Second project for General Assembly WDI27, London.
 
 ##Installation & Setup
 - Download or clone the repo
-- `npm i` to install dependencies
+- `yarn` to install dependencies
 - `gulp` to compile the source code and open in browser
-
-> **Note**: You'll need to have `gulp-cli` installed globally
-> `npm i -g gulp-cli`
 
 You can clone or download the code from my GitHub repo [here.](https://github.com/n2kp/WDI27-London-Project-One-)
 

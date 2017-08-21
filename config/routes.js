@@ -3,6 +3,7 @@ const registrations = require('../controllers/registrations');
 const users = require('../controllers/users');
 const stars = require('../controllers/stars');
 const sessions = require('../controllers/sessions');
+const weatherController = require('../controllers/weather');
 const secureRoute = require('../lib/secureRoute');
 const upload = require('../lib/upload');
 const oauth = require('../controllers/oauth');
@@ -15,7 +16,7 @@ router.route('/oauth/instagram')
   .get(oauth.instagram);
 
 router.route('/map')
-  .get(secureRoute, stars.map)
+  .get(secureRoute, stars.map);
 
 router.route('/stars')
   .get(secureRoute, stars.index)
@@ -56,6 +57,8 @@ router.route('/stars/:id/comments')
 
 router.route('/stars/:id/comments/:commentId')
   .delete(secureRoute, stars.deleteComment);
+
+router.get('/weather', weatherController.proxy);
 
 router.all('*', (req, res) => res.notFound());
 

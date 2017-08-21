@@ -72,7 +72,7 @@ $(() => {
       const latLng = new google.maps.LatLng(star.lat, star.lng);
       const marker = new google.maps.Marker({
         position: latLng,
-        map: map,
+        map: map
         // icon: '../assets/pin.png'
       });
       infoWindowDetails(marker, star);
@@ -140,12 +140,7 @@ $(() => {
   function getWeather(pos) {
 
     $.ajax({
-      url: 'http://api.openweathermap.org/data/2.5/forecast',
-      data: {
-        lat: pos.lat,
-        lon: pos.lng,
-        APPID: 'cac323ad46f52a4922a362586460218c'
-      }
+      url: `/weather?lat=${pos.lat}&lng=${pos.lng}`
     })
     .done((response) => {
 
@@ -174,6 +169,42 @@ $(() => {
       }
       $('#userProfileForecast').append(totalHTML);
     });
+
+    // $.ajax({
+    //   url: 'http://api.openweathermap.org/data/2.5/forecast',
+    //   data: {
+    //     lat: pos.lat,
+    //     lon: pos.lng,
+    //     APPID: 'cac323ad46f52a4922a362586460218c'
+    //   }
+    // })
+    // .done((response) => {
+    //
+    //   const filterTimes = response.list.filter((forecast) => {
+    //     return times.indexOf(forecast.dt_txt.split(' ')[1]) > -1;
+    //   });
+    //
+    //   let totalHTML = '';
+    //
+    //   for(let i = 0; i < filterTimes.length; i++) {
+    //     const isFirst = (i === 0) || (filterTimes[i].dt_txt.split(' ')[0] !== filterTimes[i-1].dt_txt.split(' ')[0]);
+    //
+    //     const isLast = (i === filterTimes.length -1) || (filterTimes[i].dt_txt.split(' ')[0] !== filterTimes[i+1].dt_txt.split(' ')[0]);
+    //
+    //     const forecastHTML = `<div class="forecastHour">
+    //       <img src="http://openweathermap.org/img/w/${filterTimes[i].weather[0].icon}.png">
+    //       <p>${filterTimes[i].clouds.all}%</p>
+    //     </div> `;
+    //
+    //     const startHTML = isFirst ? `<div class="forecastDay">
+    //     <h3>${moment(filterTimes[i].dt_txt.split(' ')[0]).format('MMM Do YYYY')}</h3>` : '';
+    //
+    //     const finishHTML = isLast ? `</div>` : '';
+    //     const individualHTML = startHTML + forecastHTML + finishHTML;
+    //     totalHTML += individualHTML;
+    //   }
+    //   $('#userProfileForecast').append(totalHTML);
+    // });
   }
 
 

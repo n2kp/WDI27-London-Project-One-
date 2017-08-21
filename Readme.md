@@ -48,7 +48,7 @@ The final bit of the site to mention is the user profile part. Clicking the user
 The weather API that I used was the OpenWeather service. They provide information regarding the cloud coverage which I used along with the users location (via Geolocation on Google Maps) to provide the user with a 5 day forecast to show what their chances of star gazing is.
 
 ##Technologies Used
-The technologies that were used in creating this game are as follows:
+The technologies that were used in creating this project are as follows:
 
 - HTML5
 - SASS
